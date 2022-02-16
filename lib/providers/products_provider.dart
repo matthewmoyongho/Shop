@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import '../models/product.dart';
+import 'product.dart';
 
 class ProductsProvider with ChangeNotifier {
-  List<Product> _products = [
+  List<Product> _products =  [
     Product(
       id: 'p1',
       title: 'Red Shirt',
@@ -36,9 +36,32 @@ class ProductsProvider with ChangeNotifier {
   ];
 
 
-  List get products {
+  //bool _showFavouriteOnly = false;
+
+  List<Product> get products {
+
     return [..._products];
   }
+
+  List<Product> get favouriteProducts {
+
+      return _products.where((element) => element.isFavourite).toList();
+
+  }
+
+  Product findById(String id){
+    return products.firstWhere((element) => element.id==id);
+  }
+
+  // void showFavourite(){
+  //   _showFavouriteOnly=true;
+  //   notifyListeners();
+  // }
+  //
+  // void showAll(){
+  //   _showFavouriteOnly=false;
+  //   notifyListeners();
+  // }
 
   void addProduct(value) {
   //  _products.add(value);
