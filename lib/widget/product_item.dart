@@ -22,7 +22,7 @@ class ProductItem extends StatelessWidget {
           onTap: () => Navigator.of(context)
               .pushNamed(ProductDetailScreen.id, arguments: product.id),
           child: Image(
-            image: AssetImage(product.imageUrl),
+            image: NetworkImage(product.imageUrl),
             fit: BoxFit.cover,
           ),
         ),
@@ -40,14 +40,14 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
             onPressed: () {
-              cart.addItem(product.id, product.title, product.price);
+              cart.addItem(product.id!, product.title, product.price);
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: const Text('Item added to cart'),
                 action: SnackBarAction(
                   label: 'Undo',
                   onPressed: () {
-                    cart.removeSingleItem(product.id);
+                    cart.removeSingleItem(product.id!);
                   },
                 ),
                 duration: const Duration(seconds: 3),

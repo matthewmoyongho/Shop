@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/screen/edit_product_screen.dart';
 
 import '../providers/products_provider.dart';
-import '../screen/edit_product_screen.dart';
 import '../widget/app_drawer.dart';
 import '../widget/user_product.dart';
 
@@ -18,7 +18,14 @@ class UserProductsScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProductScreen.id);
+              //Navigator.of(context).pushNamed(EditProductScreen.id);
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => EditProductScreen(
+                        isEdit: false,
+                      )));
+
+              // Navigator.of(context)
+              //     .push(MaterialPageRoute(builder: (_) => TestScreen()));
             },
             icon: Icon(Icons.add),
           ),
@@ -34,6 +41,7 @@ class UserProductsScreen extends StatelessWidget {
                     UserProduct(
                       title: products.products[index].title,
                       imageUrl: products.products[index].imageUrl,
+                      id: products.products[index].id!,
                     ),
                     Divider(),
                   ],
